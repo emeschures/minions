@@ -1,5 +1,6 @@
 import React from 'react'
 import httpClient from '../httpClient.js'
+import { Link } from 'react-router-dom'
 
 class Minions extends React.Component {
 
@@ -21,7 +22,11 @@ class Minions extends React.Component {
             <div className="Minions">
                 <h2>Number of Minions: {minions.length}</h2>
                 {minions.map((m) => {
-                    return <img src={m.imageUrl} alt={m.name} key={m._id} />
+                    return (
+                    <Link key={m._id} to={`/minions/${m._id}`}>
+                    <img src={m.imageUrl} alt={m.name} />
+                    </Link>
+                )
                 })}
             </div>
         )
