@@ -9,6 +9,7 @@ module.exports = {
 
   create: (req, res) => {
     Minion.create(req.body, (err, savedMinion) => {
+      if(err) return res.json({ success: false })
       res.json({ success: true, message: "Minion created.", minion: savedMinion })
     })
   },
@@ -21,12 +22,14 @@ module.exports = {
 
   update: (req, res) => {
     Minion.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedMinion) => {
+      if(err) return res.json({ success: false })
       res.json({ success: true, message: "Minion updated.", minion: updatedMinion })
     })
   },
 
   destroy: (req, res) => {
     Minion.findByIdAndRemove(req.params.id, (err, deletedMinion) => {
+      if(err) return res.json({ success: false })
       res.json({ success: true, message: "Minion deleted." })
     })
   }
