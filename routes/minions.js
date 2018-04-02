@@ -1,10 +1,9 @@
 const
   express = require('express'),
-  minionsRouter = new express.Router()
+  minionsRouter = new express.Router(),
+  minionsCtrl = require('../controllers/minions.js')
 
 minionsRouter.route('/')
-  .get((req, res) => {
-    res.json({ message: "Minions API root." })
-  })
+  .get(minionsCtrl.index)
 
 module.exports = minionsRouter
