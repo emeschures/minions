@@ -2,10 +2,21 @@ const
   express = require('express'),
   app = express(),
   mongoose = require('mongoose'),
-  morgan = require('morgan'),
+  logger = require('morgan'),
   bodyParser = require('body-parser'),
-  PORT = process.env.PORT || 3000,
+  PORT = process.env.PORT || 3001,
   MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/minions'
+
+mongoose.connect(MONGODB_URI, (err) => {
+  console.log(err || `Connected to MongoDB.`)
+})
+
+app.use(logger('dev'))
+app.use(bodyParser.json())
+
+app.get('/', (req, res) => {
+  res.json({ message: 'root route.' })
+})
 
 app.listen(PORT, (err) => {
   console.log(err || `Server running on ${PORT}.`)
