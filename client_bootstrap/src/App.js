@@ -6,7 +6,6 @@ import Minions from './views/Minions.js'
 import NewMinion from './views/NewMinion.js'
 import MinionDetail from './views/MinionDetail.js'
 import Home from './views/Home.js'
-import _ from 'lodash'
 
 class App extends Component {
   render() {
