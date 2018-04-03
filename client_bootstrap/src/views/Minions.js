@@ -17,6 +17,9 @@ class Minions extends React.Component {
     }
 
     render() {
+
+        // const minionsRows = _.chunk(this.state)
+
         const { minions } = this.state
         return (
             <div className="Minions">
