@@ -30,7 +30,8 @@ class MinionDetail extends React.Component {
         })
     }
 
-    handleUpdateClick() {
+    handleEditFormSubmit(evt) {
+        evt.preventDefault()
         const { name, imageUrl } = this.refs
         const minionFormFields = {
             name: name.refs.name.value,
@@ -38,7 +39,7 @@ class MinionDetail extends React.Component {
         }
 
         httpClient.updateMinion(this.props.match.params.id, minionFormFields).then((serverResponse) => {
-            this.setState()({
+            this.setState({
                 modalOpen: false,
                 minion: serverResponse.data.minion
             })
@@ -59,24 +60,24 @@ class MinionDetail extends React.Component {
 
                 <Modal isOpen={modalOpen}>
                 <ModalHeader>Edit Minion</ModalHeader>
-                <ModalBody>
-                    <Form>
-                        <FormGroup>
-                            <Label for="name">Name</Label>
-                            <Input defaultValue={minion.name} ref="name" innerRef="name" type="text" id="name" />
-                        </FormGroup>
-                        
-                        <FormGroup>
-                            <Label for="imageUrl">ImageUrl</Label>
-                            <Input defaultValue={minion.imageUrl} ref="imageUrl" innerRef="imageUrl" type="text" id="imageUrl" />
-                        </FormGroup>
+                    <Form onSubmit={this.handleEditFormSubmit.bind(this)} >
+                        <ModalBody>
+                            <FormGroup>
+                                <Label for="name">Name</Label>
+                                <Input defaultValue={minion.name} ref="name" innerRef="name" type="text" id="name" />
+                            </FormGroup>
+                            
+                            <FormGroup>
+                                <Label for="imageUrl">ImageUrl</Label>
+                                <Input defaultValue={minion.imageUrl} ref="imageUrl" innerRef="imageUrl" type="text" id="imageUrl" />
+                            </FormGroup>
 
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button type="submit" color="info">Update</Button>
+                            <Button type="button" onClick={this.handleDeleteClick.bind(this)} color="danger">Delete</Button>
+                        </ModalFooter>
                     </Form>
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="info">Update</Button>
-                    <Button onClick={this.handleDeleteClick.bind(this)} color="danger">Delete</Button>
-                </ModalFooter>
                 </Modal>
             
             </div>

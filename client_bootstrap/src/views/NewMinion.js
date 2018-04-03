@@ -26,7 +26,19 @@ class NewMinion extends React.Component {
         return (
             <div className="NewMinion">
                 <h1>Add New Minion</h1>
-               
+                <Form onSubmit={this.handleFormSubmit.bind(this)}>
+                    <FormGroup>
+                        <Label for="name">Name</Label>
+                        <Input ref="name" innerRef="name" type="text" id="name" />
+                    </FormGroup>
+                    
+                    <FormGroup>
+                        <Label for="imageUrl">ImageUrl</Label>
+                        <Input ref="imageUrl" innerRef="imageUrl" type="text" id="imageUrl" />
+                    </FormGroup>
+
+                    <Button>Submit</Button>
+                </Form>
             </div>
         )
     }
